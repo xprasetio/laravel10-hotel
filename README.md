@@ -2,4 +2,4 @@
 
 -   setup .env
 
--   Berikutnya 15. Laravel multy auth with breeze
+- LOGIN DI MAILTRAP.IO UNTUK CEK LINK EMAIL SEPERTI FORGOT PASSOWORD dan setting smtp menggunakan laravel 9+
