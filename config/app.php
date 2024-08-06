@@ -158,8 +158,6 @@ return [
     'providers' => ServiceProvider::defaultProviders()->merge([
         /*
          * Package Service Providers...
-         */
-
         /*
          * Application Service Providers...
          */
