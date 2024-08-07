@@ -6,4 +6,6 @@
 
 -   composer require intervention/image to install image intervention
 
-wes tekan 54 next 55
+-   php artisan make:model BookArea
+
+60

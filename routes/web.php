@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\TeamController;
+use App\Http\Controllers\Backend\RoomTypeController;
 
 
 // Route::get('/', function () {
@@ -53,5 +54,16 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('/delete/team/{id}', 'DeleteTeam')->name('delete.team');
         Route::post('/team/store', 'TeamStore')->name('team.store');
         Route::post('/team/update', 'TeamUpdate')->name('team.update');
+    });
+    //Book Area ALL ROUTE 
+    Route::controller(TeamController::class)->group(function () {
+        Route::get('/book/area', 'BookArea')->name('book.area');
+        Route::post('/book/area/update', 'BookAreaUpdate')->name('book.area.update');
+    });
+    //Room type  ALL ROUTE 
+    Route::controller(RoomTypeController::class)->group(function () {
+        Route::get('/room/type/list', 'RoomTypeList')->name('room.type.list');
+        Route::get('/add/room/type', 'AddRoomType')->name('add.room.type');
+        Route::post('/room/type/store', 'RoomTypeStore')->name('room.type.store');
     });
 });

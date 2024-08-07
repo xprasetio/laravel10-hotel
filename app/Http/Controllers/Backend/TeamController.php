@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Team;
+use App\Models\BookArea;
 use Illuminate\Http\Request;
-use Intervention\Image\Image;
+// use Intervention\Image\Image;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 
 class TeamController extends Controller
 {
@@ -25,7 +27,8 @@ class TeamController extends Controller
         return view('backend.team.edit_team', compact('team'));
     }
 
-    public function DeleteTeam($id){
+    public function DeleteTeam($id)
+    {
         $item = Team::findOrFail($id);
         $img = $item->image;
         unlink($img);
@@ -96,5 +99,53 @@ class TeamController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->route('all.team')->with($notification);
+    }
+
+    //================= BOOK AREA ALL METHODS =========
+    public function BookArea()
+    {
+        $book = BookArea::find(1);
+        return view('backend.bookarea.book_area', compact('book'));
+    }
+
+    public function BookAreaUpdate(Request $request)
+    {
+        $book_id = $request->id;
+        if ($request->file('image')) {
+            $image = $request->file('image');
+            // $image->resize(1000,1000);
+            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $upload_location = 'upload/bookarea/';
+            $image->move($upload_location, $name_gen);
+            $save_url = 'upload/bookarea/' . $name_gen;
+            BookArea::findOrFail($book_id)->update([
+                'short_title' => $request->short_title,
+                'main_title' => $request->main_title,
+                'short_description' => $request->short_description,
+                'link_url' => $request->link_url,
+                'image' => $save_url,
+                'updated_at' => Carbon::now(),
+            ]);
+
+            $notification = array(
+                'message' => 'Book Area Updated With Image Successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->back()->with($notification);
+        } else {
+            BookArea::findOrFail($book_id)->update([
+                'short_title' => $request->short_title,
+                'main_title' => $request->main_title,
+                'short_description' => $request->short_description,
+                'link_url' => $request->link_url,
+                'updated_at' => Carbon::now(),
+            ]);
+
+            $notification = array(
+                'message' => 'Book Area Updated Without Image Successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->back()->with($notification);
+        }
     }
 }
