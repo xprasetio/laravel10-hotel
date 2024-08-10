@@ -8,4 +8,6 @@
 
 -   php artisan make:model BookArea
 
-60
+http://localhost:8000/admin/login admin@gmail.com : admin789
+
+
