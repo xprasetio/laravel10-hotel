@@ -69,6 +69,13 @@
                                                         <input type="file" name="multi_img[]" class="form-control"
                                                             multiple id="multiImg"
                                                             accept="image/jpeg, image/jpg, image/gif, image/png">
+
+                                                        @foreach ($multiimgs as $item)
+                                                            <img src="{{ !empty($item->multi_img) ? url('upload/roomimg/multi_img/' . $item->multi_img) : url('upload/no_image.jpg') }}"
+                                                                alt="Admin" class="bg-primary" width="60">
+                                                            <a href="{{ route('multi.image.delete', $item->id) }}"><i
+                                                                    class="lni lni-close"></i> </a>
+                                                        @endforeach
                                                         <div class="row" id="preview_img"></div>
                                                     </div>
 
