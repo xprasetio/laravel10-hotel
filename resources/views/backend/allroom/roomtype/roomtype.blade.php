@@ -6,10 +6,17 @@
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
-                        <a href="{{ route('add.room.type') }}" class="btn btn-outline-primary px-5 radius-30"> Add Room Type
-                        </a>
+                        <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Room Type List</li>
                     </ol>
                 </nav>
+            </div>
+            <div class="ms-auto">
+                <div class="btn-group">
+                    <a href="{{ route('add.room.type') }}" class="btn btn-primary px-5"> Add Room Type </a>
+
+                </div>
             </div>
         </div>
         <!--end breadcrumb-->
@@ -41,8 +48,8 @@
                                         @foreach ($rooms as $roo)
                                             <a href="{{ route('edit.room', $roo->id) }}"
                                                 class="btn btn-warning px-3 radius-30"> Edit </a>
-                                            <a href=""
-                                                class="btn btn-danger px-3 radius-30" id="delete"> Delete </a>
+                                            <a href="{{ route('delete.room', $roo->id) }}"
+                                                class="btn btn-danger px-3 radius-30" id="delete"> Delete</a>
                                         @endforeach
                                     </td>
 
