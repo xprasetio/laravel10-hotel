@@ -79,10 +79,12 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('/delete/roomno/{id}', 'DeleteRoomNumber')->name('delete.roomno');
         Route::get('/delete/room/{id}', 'DeleteRoom')->name('delete.room');
     });
-    /// Room All Route 
-    Route::controller(FrontendRoomController::class)->group(function () {
+});
 
-        Route::get('/rooms/', 'AllFrontendRoomList')->name('froom.all');
-        Route::get('room/details/{id}','RoomDetailsPage')->name('detail.room');
-    });
+/// Room All Route 
+Route::controller(FrontendRoomController::class)->group(function () {
+
+    Route::get('/rooms/', 'AllFrontendRoomList')->name('froom.all');
+    Route::get('/room/details/{id}', 'RoomDetailsPage')->name('detail.room');
+    Route::get('/bookings/', 'BookingSeach')->name('booking.search');
 });
