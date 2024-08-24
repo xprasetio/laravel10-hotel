@@ -87,4 +87,5 @@ Route::controller(FrontendRoomController::class)->group(function () {
     Route::get('/rooms/', 'AllFrontendRoomList')->name('froom.all');
     Route::get('/room/details/{id}', 'RoomDetailsPage')->name('detail.room');
     Route::get('/bookings/', 'BookingSeach')->name('booking.search');
+    Route::get('/search/room/details/{id}', 'SearchRoomDetails')->name('search_room_details');
 });
