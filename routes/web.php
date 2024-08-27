@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\RoomController;
 use App\Http\Controllers\Backend\TeamController;
 use App\Http\Controllers\Backend\RoomTypeController;
+use App\Http\Controllers\Frontend\BookingController;
 use App\Http\Controllers\Frontend\FrontendRoomController;
 
 
@@ -89,4 +90,12 @@ Route::controller(FrontendRoomController::class)->group(function () {
     Route::get('/bookings/', 'BookingSeach')->name('booking.search');
     Route::get('/search/room/details/{id}', 'SearchRoomDetails')->name('search_room_details');
     Route::get('/check_room_availability/', 'CheckRoomAvailability')->name('check_room_availability');
+});
+
+// Auth middlewar user must have login for access this route
+Route::middleware(['auth', 'roles:admin'])->group(function () {
+    Route::controller(BookingController::class)->group(function () {
+        Route::get('/checkout/', 'Checkout')->name('checkout');
+        Route::post('/booking/store/', 'BookingStore')->name('user_booking_store');
+    });
 });
