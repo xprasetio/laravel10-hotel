@@ -93,9 +93,10 @@ Route::controller(FrontendRoomController::class)->group(function () {
 });
 
 // Auth middlewar user must have login for access this route
-Route::middleware(['auth', 'roles:admin'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::controller(BookingController::class)->group(function () {
         Route::get('/checkout/', 'Checkout')->name('checkout');
         Route::post('/booking/store/', 'BookingStore')->name('user_booking_store');
+        Route::post('/checkout/store/', 'CheckoutStore')->name('checkout.store');
     });
 });
