@@ -10,4 +10,14 @@
 
 http://localhost:8000/admin/login admin@gmail.com : admin789
 
+-   LAKUKAN LANGKAH BERIKUT UNTUK MENCOBA STRIPE
+    composer require stripe/stripe-php
+    composer dump-autoload
+    php artisan cache:clear
+    php artisan config:clear
+    php artisan view:clear
+    php artisan optimize
 
+card : 4242 4242 4242 4242
+
+next bagian 106

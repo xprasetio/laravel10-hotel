@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use Stripe\Charge;
+use Stripe\Stripe;
 use App\Models\Room;
 use App\Models\Booking;
 use Carbon\CarbonPeriod;
@@ -72,7 +74,7 @@ class BookingController extends Controller
 
     public function CheckoutStore(Request $request)
     {
-
+        //  dd(env('STRIPE_SECRET'));
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required',
@@ -94,6 +96,32 @@ class BookingController extends Controller
         $discount = ($room->discount / 100) * $subtotal;
         $total_price = $subtotal - $discount;
         $code = date('Ymd') . rand(00000000, 99999999);
+
+        if ($request->payment_method == 'Stripe') {
+            Stripe::setApiKey(env('STRIPE_SECRET'));
+            $s_pay = Charge::create([
+                "amount" => $total_price * 100,
+                "currency" => "usd",
+                "source" => $request->stripeToken,
+                "description" => "Payment For Booking. Booking No " . $code,
+
+            ]);
+
+            if ($s_pay['status'] == 'succeeded') {
+                $payment_status = 1;
+                $transation_id = $s_pay->id;
+            } else {
+
+                $notification = array(
+                    'message' => 'Sorry Payment Field',
+                    'alert-type' => 'error'
+                );
+                return redirect('/')->with($notification);
+            }
+        } else {
+            $payment_status = 0;
+            $transation_id = '';
+        }
 
         $data = new Booking();
         $data->rooms_id = $room->id;
