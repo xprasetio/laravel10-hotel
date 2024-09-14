@@ -24,7 +24,7 @@
                             </li>
                             <li>
                                 <i class='bx bx-envelope'></i>
-                                <a href="mailto:hello@atoli.com">hello@atoli.com</a>
+                                <a href="mailto:hello@Xprasetio.com">hello@Xprasetio.com</a>
                             </li>
                         </ul>
                     </div>
@@ -157,7 +157,7 @@
                             Copyright @
                             <script>
                                 document.write(new Date().getFullYear())
-                            </script> Atoli. All Rights Reserved by
+                            </script> Xprasetio. All Rights Reserved by
                             <a href="https://hibootstrap.com/" target="_blank">HiBootstrap</a>
                         </p>
                     </div>
