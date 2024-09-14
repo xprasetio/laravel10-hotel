@@ -20,4 +20,19 @@ http://localhost:8000/admin/login admin@gmail.com : admin789
 
 card : 4242 4242 4242 4242
 
-next bagian 106
+* Tampilan Dashboard 
+* Manage Team : 
+- ![alt text](image.png)
+- ![alt text](image-1.png)
+
+* Manage Book Area :
+- ![alt text](image-2.png)
+
+* Manage Room Area : 
+- ![alt text](image-3.png)
+
+* Manage Booking Area
+- ![alt text](image-4.png)
+
+* Manage Room List 
+- ![alt text](image-5.png)
