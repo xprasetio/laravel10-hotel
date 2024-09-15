@@ -90,6 +90,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         // booking Update 
         Route::post('/update/booking/status/{id}', 'UpdateBookingStatus')->name('update.booking.status');
         Route::post('/update/booking/{id}', 'UpdateBooking')->name('update.booking');
+        Route::get('/download/invoice/{id}', 'DownloadInvoice')->name('download.invoice');
         // Assign Room Route 
         Route::get('/assign_room/{id}', 'AssignRoom')->name('assign_room');
         Route::get('/assign_room/store/{booking_id}/{room_number_id}', 'AssignRoomStore')->name('assign_room_store');

@@ -7,14 +7,15 @@ use Stripe\Stripe;
 use App\Models\Room;
 use App\Models\Booking;
 use Carbon\CarbonPeriod;
+use App\Models\RoomNumber;
 use Illuminate\Http\Request;
 use App\Models\RoomBookedDate;
 use Illuminate\Support\Carbon;
+use App\Models\BookingRoomList;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use App\Models\BookingRoomList;
-use App\Models\RoomNumber;
 
 class BookingController extends Controller
 {
@@ -304,4 +305,15 @@ class BookingController extends Controller
         );
         return redirect()->back()->with($notification);
     } // End Method 
+
+    public function DownloadInvoice($id)
+    {
+
+        $editData = Booking::with('room')->find($id);
+        $pdf = Pdf::loadView('backend.booking.booking_invoice', compact('editData'))->setPaper('a4')->setOption([
+            'tempDir' => public_path(),
+            'chroot' => public_path(),
+        ]);
+        return $pdf->download('invoice.pdf');
+    } // End Metho
 }
