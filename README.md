@@ -25,3 +25,17 @@ card : 4242 4242 4242 4242
 
 *   Tampilan Dashboard
 *   Manage Team :
+    ![alt text](image-2.png)
+    ![alt text](image-1.png)
+*   Manage Booking :
+    ![alt text](image-3.png)
+*   Manage Room :
+    ![alt text](image-4.png)
+    ![alt text](image-5.png)
+    ![alt text](image-6.png)
+    ![alt text](image-7.png)
+*   Manage List Booking :
+    ![alt text](image-8.png)
+    ![alt text](image-9.png)
+    ![alt text](image-10.png)
+    ![alt text](image-11.png)
